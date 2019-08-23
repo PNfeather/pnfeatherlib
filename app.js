@@ -35,9 +35,8 @@ app.use(session({
 // 验证用户登录
 app.use(function(req, res, next){
 
-
     //后台请求
-    if(req.session.username && req.url.indexOf("logout") < 0){ //表示已经登录后台
+    if(req.session.username && req.url.indexOf("logout") < 0 && req.url.indexOf("login") < 0){ //表示已经登录后台
         res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});//设置response编码为utf-8
         next();
     }else if( req.url.indexOf("login") >=0 || req.url.indexOf("logout") >= 0){

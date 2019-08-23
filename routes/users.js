@@ -7,7 +7,7 @@ var ObjectId = require('mongodb').ObjectId;
 /* POST users listing. */
 //登录
 router.post('/login', function(req, res, next) {
-    res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});//设置response编码为utf-8
+
     var md5 = crypto.createHash('md5');
     var password = md5.update(req.body.password).digest('base64');
 
@@ -25,6 +25,7 @@ router.post('/login', function(req, res, next) {
             resData.code = 0;
             resData.msg = '登录成功';
         }
+        res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});//设置response编码为utf-8
         res.end(JSON.stringify(resData));
 
     });

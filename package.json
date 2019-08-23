@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "run": "Supervisor ./bin/www",
+    "add_commit_push": "git go '指令快速提交代码'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -12,7 +14,7 @@
     "express-session": "^1.16.2",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "mongodb": "^3.3.0",
+    "mongodb": "^2.2.33",
     "morgan": "~1.9.1"
   }
 }

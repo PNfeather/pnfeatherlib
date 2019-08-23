@@ -1,12 +1,10 @@
 var mongo=require("mongodb");
 var MongoClient = mongo.MongoClient;
 var assert = require('assert');
-var url = require('url');
-var host="localhost";
+var host="182.61.147.202";
 var port="27017";
-var Urls = 'mongodb://localhost:27017/classweb';
-// classweb  ===> 自动创建一个
-
+var Urls = 'mongodb://' + host + ':' + port + '/PNfeather';
+// PNfeather  ===> 手动创建一个
 
 //add一条数据
 var add = function(db,collections,selector,fn){

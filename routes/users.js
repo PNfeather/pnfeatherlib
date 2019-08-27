@@ -23,6 +23,9 @@ router.post('/login', function(req, res, next) {
             req.session.username = req.body.username; //存session
             req.session.password = password;
             resData.code = 0;
+            resData.data = {
+                level: data[0].level
+            };
             resData.msg = '登录成功';
         }
         res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});//设置response编码为utf-8

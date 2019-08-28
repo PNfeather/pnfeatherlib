@@ -107,11 +107,11 @@ var methodType = {
     //  放入到服务器
     //  请求---> 根据传入进来的请求 数据库操作
     //  req.query    req.body
-    login:find,
+    login: find,
     show: find,
-    add:add,
-    delete:deletes,
-    page:page //分页
+    add: add,
+    deleteClassify: deletes,
+    page: page //分页
 };
 //主逻辑    服务器  ， 请求    --》
 // req.route.path ==》 防止前端的请求 直接操作你的数据库

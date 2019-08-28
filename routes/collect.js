@@ -43,4 +43,22 @@ router.post('/addClassify', function(req, res, next) {
     });
 });
 
+// 删除收藏分类
+router.post('/deleteClassify', function(req, res, next) {
+
+    handler(req, res, "collectionClassifyList", {"_id" : ObjectId(req.body.id)},function(data){
+
+        let resData = {};
+        if(data.length==0){
+            resData.code = -1;
+            resData.msg = '抱歉，删除失败';
+        }else{
+            resData.code = 0;
+            resData.msg = '删除分类成功';
+        }
+        res.end(JSON.stringify(resData));
+
+    });
+});
+
 module.exports = router;

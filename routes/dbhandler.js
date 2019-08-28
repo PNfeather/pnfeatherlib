@@ -42,8 +42,6 @@ var find = function(db,collections,selector,fn,sortType){
     //collections="hashtable";
     var collection = db.collection(collections);
     collection.find(selector).sort(sortType).toArray(function(err,result){
-        console.log(sortType);
-        //console.log(docs);
         try{
             assert.equal(err,null);
         }catch(e){
@@ -110,6 +108,8 @@ var methodType = {
     //  请求---> 根据传入进来的请求 数据库操作
     //  req.query    req.body
     login:find,
+    show: find,
+    add:add,
     delete:deletes,
     page:page //分页
 };

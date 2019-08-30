@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var handler = require('./dbhandler.js');
 var crypto = require('crypto');
-var ObjectId = require('mongodb').ObjectId;
 
 /* POST users listing. */
 //登录

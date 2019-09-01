@@ -3,7 +3,7 @@ var router = express.Router();
 var handler = require('./dbhandler.js');
 var ObjectId = require('mongodb').ObjectId;
 
-//获取收藏列表
+//获取收藏分类列表
 router.get('/classifyList', function(req, res, next) {
     req.route.path = "/show"; //修改path来设定 对 数据库的操作
     handler(req, res, "collectionClassifyList", {},function(data){
@@ -63,6 +63,18 @@ router.post('/deleteClassify', function(req, res, next) {
         res.end(JSON.stringify(resData));
 
     });
+});
+
+//获取收藏列表
+router.get('/collectionList', function(req, res, next) {
+    req.route.path = "/show"; //修改path来设定 对 数据库的操作
+    handler(req, res, "collection", {},function(data){
+        let resData = {};
+        resData.code = 0;
+        resData.msg = '获取列表数据成功';
+        resData.data = data;
+        res.end(JSON.stringify(resData));
+    }, {_id: -1});
 });
 
 // 添加收藏

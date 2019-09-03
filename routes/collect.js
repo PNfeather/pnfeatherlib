@@ -112,4 +112,25 @@ router.post('/addCollection', function(req, res, next) {
     }
 });
 
+// 更新地址
+router.post('/editCollection', function(req, res, next) {
+    let reqData = {...req.body};
+    delete reqData._id;
+    let selectors = [
+        {_id: ObjectId(req.body._id)},
+        {"$set": reqData}
+    ];
+    handler(req, res, "collection", selectors,function(data){
+        let resData = {};
+        if (data.length===0) {
+            resData.code = -1;
+            resData.msg = '抱歉，更新失败';
+        }  else {
+            resData.code = 0;
+            resData.msg = '更新成功';
+        }
+        res.end(JSON.stringify(resData));
+    });
+});
+
 module.exports = router;

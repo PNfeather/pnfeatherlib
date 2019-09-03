@@ -111,6 +111,7 @@ var methodType = {
     show: find,
     add: add,
     deleteClassify: deletes,
+    editCollection: updates,
     page: page //分页
 };
 //主逻辑    服务器  ， 请求    --》

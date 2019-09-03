@@ -68,7 +68,13 @@ router.post('/deleteClassify', function(req, res, next) {
 //获取收藏列表
 router.get('/collectionList', function(req, res, next) {
     req.route.path = "/show"; //修改path来设定 对 数据库的操作
-    handler(req, res, "collection", {},function(data){
+    const {keyWord} = req.query;
+    let searchObj = {};
+    if (keyWord) {
+        let reg = new RegExp(keyWord, 'gim');
+        searchObj = {$or:[{classify: reg}, {desc: reg}, {name: reg}]}
+    }
+    handler(req, res, "collection", searchObj,function(data){
         let resData = {};
         resData.code = 0;
         resData.msg = '获取列表数据成功';
@@ -112,7 +118,7 @@ router.post('/addCollection', function(req, res, next) {
     }
 });
 
-// 更新地址
+// 更新收藏
 router.post('/editCollection', function(req, res, next) {
     let reqData = {...req.body};
     delete reqData._id;

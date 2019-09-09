@@ -21,6 +21,7 @@ router.post('/login', function(req, res, next) {
         } else if (data.length!==0&&data[0].password===password) {
             req.session.username = req.body.username; //存session
             req.session.password = password;
+            req.session.level = data[0].level;
             resData.code = 0;
             resData.data = {
                 level: data[0].level

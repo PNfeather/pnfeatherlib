@@ -18,8 +18,14 @@ router.get('/classifyList', function(req, res, next) {
 //添加收藏分类
 router.post('/addClassify', function(req, res, next) {
     req.route.path = "/show"; //修改path来设定 对 数据库的操作
+    const { level } = req.session;
     const { value, key } = req.body;
     let resData = {};
+    if (level !== '1') {
+        resData.code = -101;
+        resData.msg = '当前账号无此操作权限';
+        return res.end(JSON.stringify(resData));
+    }
     if (value === '' || key === '') {
         resData.code = -2;
         resData.msg = '分类及其key值不能为空';
@@ -49,10 +55,16 @@ router.post('/addClassify', function(req, res, next) {
 
 // 删除收藏分类
 router.post('/deleteClassify', function(req, res, next) {
+    let resData = {};
+    const { level } = req.session;
+    if (level !== '1') {
+        resData.code = -101;
+        resData.msg = '当前账号无此操作权限';
+        return res.end(JSON.stringify(resData));
+    }
 
     handler(req, res, "collectionClassifyList", {"_id" : ObjectId(req.body.id)},function(data){
 
-        let resData = {};
         if(data.length==0){
             resData.code = -1;
             resData.msg = '抱歉，删除失败';
@@ -88,6 +100,12 @@ router.post('/addCollection', function(req, res, next) {
     req.route.path = "/show"; //修改path来设定 对 数据库的操作
     const { name, address, classify, classifyType, time, desc } = req.body;
     let resData = {};
+    const { level } = req.session;
+    if (level !== '1') {
+        resData.code = -101;
+        resData.msg = '当前账号无此操作权限';
+        return res.end(JSON.stringify(resData));
+    }
     if (name === '' || address === '' || classify === '' || time === '') {
         resData.code = -2;
         time === '' && (resData.msg = '收藏时间不能为空');
@@ -120,6 +138,13 @@ router.post('/addCollection', function(req, res, next) {
 
 // 更新收藏
 router.post('/editCollection', function(req, res, next) {
+    let resData = {};
+    const { level } = req.session;
+    if (level !== '1') {
+        resData.code = -101;
+        resData.msg = '当前账号无此操作权限';
+        return res.end(JSON.stringify(resData));
+    }
     let reqData = {...req.body};
     delete reqData._id;
     let selectors = [
@@ -127,7 +152,6 @@ router.post('/editCollection', function(req, res, next) {
         {"$set": reqData}
     ];
     handler(req, res, "collection", selectors,function(data){
-        let resData = {};
         if (data.length===0) {
             resData.code = -1;
             resData.msg = '抱歉，更新失败';

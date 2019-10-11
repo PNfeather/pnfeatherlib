@@ -26,7 +26,7 @@ router.post('/login', function(req, res, next) {
             resData.data = {
                 level: data[0].level
             };
-            resData.msg = '登录成功';
+            resData.msg = '切换成功';
         }
         res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});//设置response编码为utf-8
         res.end(JSON.stringify(resData));
@@ -41,7 +41,7 @@ router.post('/logout', (req, res, next) => {
     req.session.password = "";
     let resData = {
       code: 0,
-      msg: '登出成功'
+      msg: '角色切换中...'
     };
     res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});//设置response编码为utf-8
     res.end(JSON.stringify(resData));

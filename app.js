@@ -49,7 +49,7 @@ app.use(function(req, res, next){
         res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});//设置response编码为utf-8
         let obj = {
             code: '401',
-            msg: '未登录或登录已过期，请从新登录'
+            msg: '无角色信息，请切换'
         }
         res.end(JSON.stringify(obj));
 

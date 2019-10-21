@@ -34,7 +34,7 @@ var deletes = function(db,collections,selector,fn){
         };
 
         fn( result.result ? [result.result] : []); //如果没报错且返回数据不是0，那么表示操作成功。
-        db.close;
+        db.close();
     });
 };
 //find

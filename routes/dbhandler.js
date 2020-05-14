@@ -1,8 +1,8 @@
 var mongo=require("mongodb");
 var MongoClient = mongo.MongoClient;
 var assert = require('assert');
-var host="182.61.147.202";
-var port="27017";
+var host="172.16.16.4";
+var port="9080";
 var Urls = 'mongodb://' + host + ':' + port + '/PNfeather';
 // PNfeather  ===> 手动创建一个
 

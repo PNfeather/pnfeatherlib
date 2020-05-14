@@ -3,7 +3,7 @@ var MongoClient = mongo.MongoClient;
 var assert = require('assert');
 var host="172.16.16.4";
 var port="9080";
-var Urls = 'mongodb://admin:admin123@' + host + ':' + port + '/PNfeather';
+var Urls = 'mongodb://admin:admin123@' + host + ':' + port + '/PNfeather?authSource=admin';
 // PNfeather  ===> 手动创建一个
 
 //add一条数据
